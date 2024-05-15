@@ -5,20 +5,11 @@ import datetime
 import time
 import pandas as pd
 import matplotlib.pyplot as plt
-from transformers import AutoTokenizer, AutoModelForTokenClassification
 
 ##########################
-# headers = {"Authorization": "Bearer  ${{ secrets.HFG }}"}
-# API_URL = "https://api-inference.huggingface.co/models/cccmatthew/surrey-gp30"
+headers = {"Authorization": "Bearer " + st.secrets["HFR"]}
+API_URL = "https://api-inference.huggingface.co/models/cccmatthew/surrey-gp30"
 ##########################
-
-@st.cache(allow_output_mutation=True)
-def get_model():
-    tokenizer = AutoTokenizer.from_pretrained("cccmatthew/surrey-gp30")
-    model = AutoModelForTokenClassification.from_pretrained("cccmatthew/surrey-gp30")
-    return tokenizer,model
-
-tokenizer,model = get_model()
 
 
 def load_response_times():
@@ -105,16 +96,15 @@ def send_request_with_retry(url, headers, json_data, retries=3, backoff_factor=1
 
 if st.button('Classify'):
     if sentence:
-        # API_URL = API_URL
-        # headers = headers
-        # response, response_time = send_request_with_retry(API_URL, headers, {"inputs": sentence})
-        response = model(sentence)
+        API_URL = API_URL
+        headers = headers
+        response, response_time = send_request_with_retry(API_URL, headers, {"inputs": sentence})
         if response is not None:
             results = response.json()
             st.write('Results:')
             annotated_sentence = merge_entities(sentence, results)
             st.markdown(annotated_sentence, unsafe_allow_html=True)
-            # log_to_csv(sentence, results, response_time)
+            log_to_csv(sentence, results, response_time)
             
             df = load_response_times()
             plot_response_times(df)
@@ -124,6 +114,6 @@ if st.button('Classify'):
         st.error('Please enter a sentence.')
 
 #Separate button to just plot the response time
-# if st.button('Show Response Times'):
-#     df = load_response_times()
-#     plot_response_times(df)
+if st.button('Show Response Times'):
+    df = load_response_times()
+    plot_response_times(df)
