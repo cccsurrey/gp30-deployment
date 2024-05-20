@@ -9,7 +9,7 @@ import os
 
 ##########################
 # headers = {"Authorization": "Bearer " + st.secrets["HFR"]}
-headers = {"Authorization": "Bearer " + os.environ['TOKEN']}
+headers = {"Authorization": "Bearer " + os.environ['HF']}
 API_URL = "https://api-inference.huggingface.co/models/cccmatthew/surrey-gp30"
 ##########################
 
