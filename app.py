@@ -5,12 +5,13 @@ import datetime
 import time
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 ##########################
 token_1 = "hf_wINwGdiBHTWxiR"
 token_2 = "zmCHJLHoQqGKtgPeLDMv"
 # headers = {"Authorization": "Bearer " + st.secrets["HFR"]}
-headers = {"Authorization": "Bearer " + token_1 + token_2}
+headers = {"Authorization": "Bearer " + os.environ.get("HF", "<unknown")}
 API_URL = "https://api-inference.huggingface.co/models/cccmatthew/surrey-gp30"
 ##########################
 
