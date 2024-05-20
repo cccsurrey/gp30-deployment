@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 import os
 
 ##########################
-# headers = {"Authorization": "Bearer " + st.secrets["HFR"]}
-headers = {"Authorization": "Bearer " + os.environ['HF']}
+KEY = os.environ['api_secret']
+headers = {"Authorization": "Bearer " + KEY}
 API_URL = "https://api-inference.huggingface.co/models/cccmatthew/surrey-gp30"
 ##########################
 
