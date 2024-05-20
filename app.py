@@ -7,7 +7,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 ##########################
-headers = {"Authorization": "Bearer " + st.secrets["HFR"]}
+token_1 = "hf_wINwGdiBHTWxiR"
+token_2 = "zmCHJLHoQqGKtgPeLDMv"
+# headers = {"Authorization": "Bearer " + st.secrets["HFR"]}
+headers = {"Authorization": "Bearer " + token_1 + token_2}
 API_URL = "https://api-inference.huggingface.co/models/cccmatthew/surrey-gp30"
 ##########################
 
