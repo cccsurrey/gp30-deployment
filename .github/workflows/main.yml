@@ -16,8 +16,10 @@ jobs:
       - name: Add remote 
         env:
           HF: ${{ secrets.HF }}
+          TOKEN:  ${{ secrets.HF }}
         run: git remote add space https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-deployment
       - name: Push to hub
         env:
           HF: ${{ secrets.HF }}
+          TOKEN: ${{ secrets.HF }}
         run: git push --force https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-deployment main
